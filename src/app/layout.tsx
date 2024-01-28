@@ -8,9 +8,13 @@ import { GoogleTagManager } from '@next/third-parties/google'
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
+interface MyMetadata extends Metadata {
+  image: string;
+}
+export const metadata: MyMetadata = {
   title: "Piyasa Gayrimenkul",
-  description: "İsa Kalender ve Kudret Çöçü'nün sunduğu Piyasa Gayrimenkul programı her pazar saat 20.00'de Lider Haber Kanalı'nda izleyicileriyle buluşuyor. Gayrimenkul piyasasındaki son gelişmeler, trendler ve ipuçlarına dair en güncel bilgileri bu programda bulabilirsiniz. İnşaat projelerinden emlak yatırımlarına, konut kredilerinden gayrimenkul vergilerine kadar geniş bir yelpazede gayrimenkul sektörüne dair her şeyi keşfedin. Kaçırmayın, Piyasa Gayrimenkul her pazar günü sizleri bekliyor",
+  description: "İsa Kalender ve Kudret Çöçü'nün sunduğu Piyasa Gayrimenkul programı her pazar saat 20.00'de Lider Haber Kanalı'nda izleyicileriyle buluşuyor.",
+  image: "/public/image/piyasa-gayrimenkul.jpg",
 };
 
 export default function RootLayout({
@@ -22,17 +26,21 @@ export default function RootLayout({
     <html lang="tr">
     <GoogleTagManager gtmId="GTM-PTCQ9VNK" />
     <Head>
-			<link rel='icon' href='/public/image/subicon.png' />
-		</Head>
-      <body 
-      className={inter.className}>{children}
+      <link rel="icon" href="/public/image/subicon.png" />
+      <meta property="og:image" content="/public/image/piyasa-gayrimenkul.jpg" />
+      <link
+          rel="canonical"
+          href="https://www.piyasagayrimenkul.com/"
+          key="canonical"
+        />
+    </Head>
+    <body className={inter.className}>{children}
       <noscript
         dangerouslySetInnerHTML={{
-        __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display: none; visibility: hidden;"></iframe>`,
-        }} 
-    />
-      </body>
+          __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display: none; visibility: hidden;"></iframe>`,
+        }}
+      />
+    </body>
     </html>
   );
 }
-
