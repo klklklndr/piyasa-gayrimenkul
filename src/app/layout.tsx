@@ -28,7 +28,7 @@ export default function RootLayout({
     <Head>
       <link rel="icon" href="/public/image/subicon.png" />
       <meta property="og:image" content="/public/image/piyasa-gayrimenkul.jpg" />
-      <link rel="canonical" href="https://example.com/orijinal-url" />
+      <link rel="canonical" href="https://www.piyasagayrimenkul.com/" />
     </Head>
     <body className={inter.className}>{children}
       <noscript
