@@ -16,7 +16,11 @@ import { Textarea } from '@/components/ui/textarea';
 
 export default function Home() {
   useEffect(() => {
-    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!);
+    emailjs.init('RKZjw6drbdEujCXdB');
+    console.log(
+      'EmailJS Public Key:',
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+    );
   }, []);
 
   const [formData, setFormData] = useState({
@@ -36,35 +40,23 @@ export default function Home() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        phone: formData.phone,
-        message: formData.message,
-      };
-
-      const result = await emailjs.send(
+      const form = e.target as HTMLFormElement;
+      const result = await emailjs.sendForm(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        templateParams,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+        form,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
       );
-
+      console.log('EmailJS Result:', result);
       alert('Message sent successfully!');
-
-      pushToDataLayer({
-        event: 'generate_lead',
-        leadData: {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-        },
-      });
-
       setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error('EmailJS Error Details:', {
+        error,
+        publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+        serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+      });
       alert('Failed to send message. Please try again later.');
     }
   };
