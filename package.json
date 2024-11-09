@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emailjs/browser": "^3.x",
+    "@emailjs/browser": "^4.4.1",
     "@next/third-parties": "^14.1.0",
     "next": "13.x",
     "react": "^18.0.0",
