@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import emailjs from '@emailjs/browser';
 import { GoogleTagManager } from '@next/third-parties/google';
 import { Button } from '@/components/ui/button';
@@ -15,6 +15,10 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 
 export default function Home() {
+  useEffect(() => {
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!);
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,12 +36,20 @@ export default function Home() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+      };
+
       const result = await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        formData,
+        templateParams,
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
       );
+
       alert('Message sent successfully!');
 
       pushToDataLayer({
@@ -52,8 +64,8 @@ export default function Home() {
 
       setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
+      console.error('EmailJS Error:', error);
       alert('Failed to send message. Please try again later.');
-      console.error(error);
     }
   };
 
