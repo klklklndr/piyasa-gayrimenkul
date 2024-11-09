@@ -9,20 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.x",
     "@next/third-parties": "^14.1.0",
-    "next": "^14.1.0",
-    "react": "^18",
-    "react-dom": "^18"
+    "next": "13.x",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "^18.x",
+    "@types/react": "^18.x",
+    "@types/react-dom": "^18.x",
     "autoprefixer": "^10.0.1",
-    "eslint": "^8",
+    "eslint": "^8.x",
     "eslint-config-next": "14.1.0",
     "postcss": "^8",
-    "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "tailwindcss": "^3.x",
+    "typescript": "^4.x"
   }
 }

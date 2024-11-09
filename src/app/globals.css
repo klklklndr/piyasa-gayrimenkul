@@ -1,94 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    overflow: hidden;
+/* Page-wide styles */
+body {
+  background-image: linear-gradient(to right, #000080, rgba(0, 0, 128, 0.7)),
+    url('/image/piyasa-gayrimenkul.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #fff;
+  height: 100vh;
 }
 
-#video-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+/* Optional: Add a dark overlay to the background image for better readability */
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3); /* Dark overlay for better contrast */
+  z-index: -1; /* Sends the overlay behind content */
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Video üzerine hafif bir overlay */
+/* Centering h2 elements */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2.5rem; /* Makes heading more prominent */
+  color: #fff; /* Make heading white for better visibility */
 }
 
-.container {
-    text-align: center;
-    z-index: 1; /* Diğer elementlerin önünde olması için z-index kullanıldı */
-    opacity: 0; /* Başlangıçta görünmez yapın */
-    transform: translateY(-30px); /* Başlangıçta yukarıda biraz yer kaplasın */
-    animation: fadeInDown 1s ease-out forwards; /* fadeInDown adlı animasyonu tanımla ve son durumu koru */
+/* Form container */
+form {
+  background-color: #f0f4f8; /* Light blue-gray background */
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Form labels */
+form label {
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #333;
+  display: block;
 }
 
-.container h1,
-.container h2,
-.instagram-button {
-    font-family: 'Montserrat', sans-serif;
-    color: #ffffff;
-    position: relative; /* Pozisyonu belirle */
+/* Input and Textarea styles */
+form input[type='text'],
+form input[type='email'],
+form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin: 12px 0 24px 0;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #1a1a1a;
+  transition: border 0.3s, box-shadow 0.3s;
 }
 
-.container h1 {
-    font-size: 5em;
-    margin-top: 30px; /* Yazıyı 30px yukarı taşı */
-    position: relative; /* Pozisyonu belirle */
-    top: -180px; /* Y ekseni boyunca yukarı taşı (istenilen miktarı ayarlayabilirsiniz) */
+form input[type='text']:focus,
+form input[type='email']:focus,
+form textarea:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
 }
 
-/* Küçük ekranlar için stil kuralları */
-@media only screen and (max-width: 375px) {
-    .container h1 {
-        margin-top: 50px; /* 375px ekran genişliği için özel değer */
-        position: relative; /* Pozisyonu belirle */
-        top: -160px; /* Y ekseni boyunca yukarı taşı (istenilen miktarı ayarlayabilirsiniz) */
-    }
+/* Textarea specific styles */
+form textarea {
+  resize: vertical;
+  min-height: 140px;
 }
 
-.container h2 {
-    font-size: 1em;
-    margin-top: 30px; /* Yazıyı 30px yukarı taşı */
-    position: relative; /* Pozisyonu belirle */
-    top: -200px; /* Y ekseni boyunca yukarı taşı (istenilen miktarı ayarlayabilirsiniz) */
+/* Submit button */
+form button[type='submit'] {
+  background-color: #3b82f6;
+  color: white;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.instagram-button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    background-color: #405DE6;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    position: relative; /* Pozisyonu belirle */
-    top: -200px; /* Y ekseni boyunca yukarı taşı (istenilen miktarı ayarlayabilirsiniz) */
+form button[type='submit']:hover {
+  background-color: #2563eb;
 }
-
-
